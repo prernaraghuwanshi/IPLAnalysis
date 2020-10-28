@@ -22,6 +22,7 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
     @Test
     public void givenIPLBowlingFile_whenLoaded_shouldGiveNumberOfRecords() {
         try {
@@ -30,7 +31,4 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
-
-
-
 }
