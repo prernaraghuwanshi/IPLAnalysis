@@ -31,4 +31,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveHighestBattingAverage(){
+        try{
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithHighestAverage();
+            Assert.assertEquals("MS Dhoni",batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
