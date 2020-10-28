@@ -8,8 +8,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class IPLAnalyser {
     List<Batsman> batsmanList = null;
@@ -36,6 +38,7 @@ public class IPLAnalyser {
             throw new IPLAnalyserException(e.getMessage(), e.type.name());
         }
     }
+
     // Function to load bowler statistics file
     public int loadBowlingFile(String bowlingFilePath) throws IPLAnalyserException {
         checkFileType(bowlingFilePath);
@@ -53,12 +56,26 @@ public class IPLAnalyser {
         }
     }
 
+    // Returns Batsman with highest batting average
+    public Batsman getBatsmanWithHighestAverage() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        List<Batsman> batsmanAverageList = batsmanList.stream().sorted(Comparator.comparing(Batsman::getAverageScore).reversed()).collect(Collectors.toList());
+        return batsmanAverageList.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
         if (!patternForCSV.matcher(csvFilePath).matches())
             throw new IPLAnalyserException("Incorrect file type",
                     IPLAnalyserException.ExceptionType.FILE_TYPE_PROBLEM);
+    }
+
+    //Check empty list or not
+    private <E> void checkEmptyList(List<E> list) throws IPLAnalyserException {
+        if (list.size() == 0 || list == null) {
+            throw new IPLAnalyserException("No Data Available", IPLAnalyserException.ExceptionType.NO_DATA);
+        }
     }
 
 
