@@ -70,6 +70,13 @@ public class IPLAnalyser {
         return batsmanStrikingRateList.get(0);
     }
 
+    // Returns Batsman with maximum number of sixes
+    public Batsman getBatsmanWithMaximumSixes() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        List<Batsman> batsmanMaximumSixes = batsmanList.stream().sorted(Comparator.comparing(Batsman::getSixes).reversed()).collect(Collectors.toList());
+        return batsmanMaximumSixes.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
@@ -84,5 +91,4 @@ public class IPLAnalyser {
             throw new IPLAnalyserException("No Data Available", IPLAnalyserException.ExceptionType.NO_DATA);
         }
     }
-
 }
