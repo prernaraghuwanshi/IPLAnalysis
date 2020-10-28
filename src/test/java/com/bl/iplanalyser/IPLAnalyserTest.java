@@ -51,4 +51,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumSixes() {
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithMaximumSixes();
+            Assert.assertEquals("Andre Russell", batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
