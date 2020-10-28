@@ -103,6 +103,15 @@ public class IPLAnalyser {
         return batsmanBestAverageAndStrikeRate.get(0);
     }
 
+    // Returns Batsman with maximum runs and best average
+    public Batsman getBatsmanWithMaximumRunsAndBestAverage() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getRuns, Comparator.reverseOrder())
+                .thenComparing(Batsman::getAverageScore, Comparator.reverseOrder());
+        List<Batsman> batsmanMaximumRunsAndBestAverage = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        return batsmanMaximumRunsAndBestAverage.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
