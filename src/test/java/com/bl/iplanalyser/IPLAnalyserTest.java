@@ -91,4 +91,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumRunsAndBestAverage(){
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithMaximumRunsAndBestAverage();
+            Assert.assertEquals("David Warner ", batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
