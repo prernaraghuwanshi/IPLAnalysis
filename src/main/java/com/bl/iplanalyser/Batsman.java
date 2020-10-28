@@ -19,19 +19,19 @@ public class Batsman {
     public int notOuts;
 
     @CsvBindByName(column = "Runs")
-    public String runs;
+    public int runs;
 
     @CsvBindByName(column = "HS")
     public String highestScore;
 
     @CsvBindByName(column = "Avg")
-    public String averageScore;
+    public double averageScore;
 
     @CsvBindByName(column = "BF")
-    public String bf;
+    public int bf;
 
     @CsvBindByName(column = "SR")
-    public String strikeRate;
+    public double strikeRate;
 
     @CsvBindByName(column = "100")
     public int hundreds;
@@ -85,11 +85,11 @@ public class Batsman {
         this.notOuts = notOuts;
     }
 
-    public String getRuns() {
+    public int getRuns() {
         return runs;
     }
 
-    public void setRuns(String runs) {
+    public void setRuns(int runs) {
         this.runs = runs;
     }
 
@@ -101,27 +101,27 @@ public class Batsman {
         this.highestScore = highestScore;
     }
 
-    public String getAverageScore() {
+    public double getAverageScore() {
         return averageScore;
     }
 
-    public void setAverageScore(String averageScore) {
+    public void setAverageScore(double averageScore) {
         this.averageScore = averageScore;
     }
 
-    public String getBf() {
+    public int getBf() {
         return bf;
     }
 
-    public void setBf(String bf) {
+    public void setBf(int bf) {
         this.bf = bf;
     }
 
-    public String getStrikeRate() {
+    public double getStrikeRate() {
         return strikeRate;
     }
 
-    public void setStrikeRate(String strikeRate) {
+    public void setStrikeRate(double strikeRate) {
         this.strikeRate = strikeRate;
     }
 
