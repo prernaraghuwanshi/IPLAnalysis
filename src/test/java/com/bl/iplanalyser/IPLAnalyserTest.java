@@ -61,4 +61,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumFours() {
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithMaximumFours();
+            Assert.assertEquals("Shikhar Dhawan", batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
