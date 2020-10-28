@@ -33,7 +33,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBattingFile_shouldGivebatsmanWithHighestBattingAverage() {
+    public void givenIPLBattingFile_shouldGiveBatsmanWithHighestBattingAverage() {
         try {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             Batsman batsman = iplAnalyser.getBatsmanWithHighestAverage();
@@ -68,6 +68,16 @@ public class IPLAnalyserTest {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             Batsman batsman = iplAnalyser.getBatsmanWithMaximumFours();
             Assert.assertEquals("Shikhar Dhawan", batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumStrikeRateSixesAndFours(){
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithMaximumStrikeRateSixesAndFours();
+            Assert.assertEquals("Andre Russell", batsman.getPlayer());
         } catch (IPLAnalyserException e) {
         }
     }
