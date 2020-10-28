@@ -90,8 +90,17 @@ public class IPLAnalyser {
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getSixes, Comparator.reverseOrder())
                 .thenComparing(Batsman::getFours, Comparator.reverseOrder())
                 .thenComparing(Batsman::getStrikeRate, Comparator.reverseOrder());
-        List<Batsman> batsmanMaximumSixes = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
-        return batsmanMaximumSixes.get(0);
+        List<Batsman> batsmanMaximumSixesFoursStrikeRate = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        return batsmanMaximumSixesFoursStrikeRate.get(0);
+    }
+
+    // Returns Batsman with best average and strike rate
+    public Batsman getBatsmanWithBestAverageAndStrikeRate() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getAverageScore, Comparator.reverseOrder())
+                .thenComparing(Batsman::getStrikeRate, Comparator.reverseOrder());
+        List<Batsman> batsmanBestAverageAndStrikeRate = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        return batsmanBestAverageAndStrikeRate.get(0);
     }
 
     // Check if file is CSV or not
