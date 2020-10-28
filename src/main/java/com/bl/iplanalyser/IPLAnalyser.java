@@ -77,6 +77,13 @@ public class IPLAnalyser {
         return batsmanMaximumSixes.get(0);
     }
 
+    // Returns Batsman with maximum number of fours
+    public Batsman getBatsmanWithMaximumFours() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        List<Batsman> batsmanMaximumSixes = batsmanList.stream().sorted(Comparator.comparing(Batsman::getFours).reversed()).collect(Collectors.toList());
+        return batsmanMaximumSixes.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
