@@ -101,4 +101,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBowlingFile_shouldGiveBowlerWithMinimumBowlingAverage(){
+        try {
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            Bowler bowler = iplAnalyser.getBowlerWithMinimumBowlingAverage();
+            Assert.assertEquals("Anukul Roy", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
