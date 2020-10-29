@@ -120,6 +120,14 @@ public class IPLAnalyser {
         return bowlerMaximumAverage.get(0);
     }
 
+    //Returns bowler with top bowling strike rate
+    public Bowler getBowlerWithTopBowlingStrikeRate() throws IPLAnalyserException {
+        checkEmptyList(bowlerList);
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getStrikeRate);
+        List<Bowler> bowlerMaximumAverage = bowlerList.stream().filter(bowler -> bowler.getStrikeRate()>0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerMaximumAverage.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
