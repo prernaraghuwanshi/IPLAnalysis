@@ -116,16 +116,24 @@ public class IPLAnalyser {
     public Bowler getBowlerWithMinimumBowlingAverage() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage);
-        List<Bowler> bowlerMaximumAverage = bowlerList.stream().filter(bowler -> bowler.getAverage()>0).sorted(bowlerComparator).collect(Collectors.toList());
-        return bowlerMaximumAverage.get(0);
+        List<Bowler> bowlerBestAverage = bowlerList.stream().filter(bowler -> bowler.getAverage()>0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerBestAverage.get(0);
     }
 
     //Returns bowler with top bowling strike rate
     public Bowler getBowlerWithTopBowlingStrikeRate() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getStrikeRate);
-        List<Bowler> bowlerMaximumAverage = bowlerList.stream().filter(bowler -> bowler.getStrikeRate()>0).sorted(bowlerComparator).collect(Collectors.toList());
-        return bowlerMaximumAverage.get(0);
+        List<Bowler> bowlerBestStrikeRate = bowlerList.stream().filter(bowler -> bowler.getStrikeRate()>0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerBestStrikeRate.get(0);
+    }
+
+    //Returns bowler with best economy
+    public Bowler getBowlerWithBestEconomy() throws IPLAnalyserException {
+        checkEmptyList(bowlerList);
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getEconomy);
+        List<Bowler> bowlerBestEconomy = bowlerList.stream().filter(bowler -> bowler.getEconomy()>0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerBestEconomy.get(0);
     }
 
     // Check if file is CSV or not
