@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -158,8 +159,28 @@ public class IPLAnalyser {
     public Bowler getBowlerWithMaximumWicketsAndBestBowlingAverage() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getWickets).reversed().thenComparing(Bowler::getAverage);
-        List<Bowler> bowlerMaxWicketsAndBestAverage= bowlerList.stream().filter(bowler -> bowler.getAverage() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        List<Bowler> bowlerMaxWicketsAndBestAverage = bowlerList.stream().filter(bowler -> bowler.getAverage() > 0).sorted(bowlerComparator).collect(Collectors.toList());
         return bowlerMaxWicketsAndBestAverage.get(0);
+    }
+
+    //Returns all-rounder with best batting and bowling average
+    public AllRounder getAllRounderWithBestBattingAndBowlingAverage() throws IPLAnalyserException {
+        List<AllRounder> allRounderList =populateAllRounderList();
+        Comparator<AllRounder> allRounderComparator = Comparator.comparing(allRounder -> (allRounder.getBattingAverage() / allRounder.getBowlingAverage()), Comparator.reverseOrder());
+        List<AllRounder> allRounderBestBattingAndBowlingAverage = allRounderList.stream().sorted(allRounderComparator).collect(Collectors.toList());
+        return allRounderBestBattingAndBowlingAverage.get(0);
+    }
+
+    //Fill allrounders list
+    private List<AllRounder> populateAllRounderList() {
+        List<AllRounder> allRounderList = new ArrayList<>();
+        batsmanList.stream().forEach(batsman -> {
+            bowlerList.stream().forEach(bowler -> {
+                if(batsman.player.equals(bowler.player))
+                    allRounderList.add(new AllRounder(batsman.player,batsman.averageScore,bowler.average,bowler.wickets,batsman.runs));
+            });
+        });
+        return allRounderList;
     }
 
     // Check if file is CSV or not
