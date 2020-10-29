@@ -131,4 +131,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRateWith5WsAnd4Ws(){
+        try {
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            Bowler bowler = iplAnalyser.getBowlerWithTopBowlingStrikeRateWith5WsAnd4Ws();
+            Assert.assertEquals("Kagiso Rabada", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
