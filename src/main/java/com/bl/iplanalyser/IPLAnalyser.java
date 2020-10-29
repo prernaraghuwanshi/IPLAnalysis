@@ -44,7 +44,7 @@ public class IPLAnalyser {
         checkFileType(bowlingFilePath);
         try (Reader reader = Files.newBufferedReader(Paths.get(bowlingFilePath));) {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
-            bowlerList = csvBuilder.getCsvFileList(reader, Batsman.class);
+            bowlerList = csvBuilder.getCsvFileList(reader, Bowler.class);
             return bowlerList.size();
         } catch (IOException e) {
             throw new IPLAnalyserException(e.getMessage(),
@@ -110,6 +110,14 @@ public class IPLAnalyser {
                 .thenComparing(Batsman::getAverageScore, Comparator.reverseOrder());
         List<Batsman> batsmanMaximumRunsAndBestAverage = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
         return batsmanMaximumRunsAndBestAverage.get(0);
+    }
+
+    //Returns bowler with best bowling average
+    public Bowler getBowlerWithMinimumBowlingAverage() throws IPLAnalyserException {
+        checkEmptyList(bowlerList);
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage);
+        List<Bowler> bowlerMaximumAverage = bowlerList.stream().filter(bowler -> bowler.getAverage()>0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerMaximumAverage.get(0);
     }
 
     // Check if file is CSV or not
