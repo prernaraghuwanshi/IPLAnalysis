@@ -121,4 +121,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBowlingFile_shouldGiveBowlerWithBestEconomy(){
+        try {
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            Bowler bowler = iplAnalyser.getBowlerWithBestEconomy();
+            Assert.assertEquals("Shivam Dube", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
