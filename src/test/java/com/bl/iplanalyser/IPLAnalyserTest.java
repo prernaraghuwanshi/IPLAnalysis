@@ -168,7 +168,18 @@ public class IPLAnalyserTest {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             AllRounder allRounder = iplAnalyser.getAllRounderWithBestBattingAndBowlingAverage();
-            Assert.assertEquals("Harpreet Brar",allRounder.getName());
+            Assert.assertEquals("Harpreet Brar", allRounder.getName());
+        } catch (IPLAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenIPLBattingAndBowlingFile_shouldGiveAllRounderWithMostRunsAndWickets() {
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            AllRounder allRounder = iplAnalyser.getAllRounderWithMostRunsAndWickets();
+            Assert.assertEquals("Hardik Pandya", allRounder.getName());
         } catch (IPLAnalyserException e) {
         }
     }
