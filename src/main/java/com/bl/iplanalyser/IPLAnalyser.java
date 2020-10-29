@@ -142,8 +142,16 @@ public class IPLAnalyser {
         Comparator<Bowler> bowlerComparator = Comparator.comparing(s -> s.getFourWicket() + s.getFiveWicket());
         bowlerComparator = bowlerComparator.reversed();
         bowlerComparator = bowlerComparator.thenComparing(Bowler::getStrikeRate);
-        List<Bowler> bowlerBestStrikeRate = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
-        return bowlerBestStrikeRate.get(0);
+        List<Bowler> bowlerBestStrikeRate5W4W = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerBestStrikeRate5W4W.get(0);
+    }
+
+    //Returns bowler with best bowling average and strike rate
+    public Bowler getBowlerWithBestBowlingAverageAndStrikeRate() throws IPLAnalyserException {
+        checkEmptyList(bowlerList);
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage).thenComparing(Bowler::getStrikeRate);
+        List<Bowler> bowlerBestAverageAndStrikeRate = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerBestAverageAndStrikeRate.get(0);
     }
 
     // Check if file is CSV or not
