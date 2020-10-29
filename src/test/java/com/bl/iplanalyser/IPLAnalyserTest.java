@@ -73,7 +73,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumStrikeRateSixesAndFours(){
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumStrikeRateSixesAndFours() {
         try {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             Batsman batsman = iplAnalyser.getBatsmanWithMaximumStrikeRateSixesAndFours();
@@ -83,7 +83,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBattingFile_shouldGiveBatsmanWithBestAverageAndStrikeRate(){
+    public void givenIPLBattingFile_shouldGiveBatsmanWithBestAverageAndStrikeRate() {
         try {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             Batsman batsman = iplAnalyser.getBatsmanWithBestAverageAndStrikeRate();
@@ -93,7 +93,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumRunsAndBestAverage(){
+    public void givenIPLBattingFile_shouldGiveBatsmanWithMaximumRunsAndBestAverage() {
         try {
             iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
             Batsman batsman = iplAnalyser.getBatsmanWithMaximumRunsAndBestAverage();
@@ -103,7 +103,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithMinimumBowlingAverage(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithMinimumBowlingAverage() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithMinimumBowlingAverage();
@@ -113,7 +113,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRate(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRate() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithTopBowlingStrikeRate();
@@ -123,7 +123,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithBestEconomy(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithBestEconomy() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithBestEconomy();
@@ -133,7 +133,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRateWith5WsAnd4Ws(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRateWith5WsAnd4Ws() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithTopBowlingStrikeRateWith5WsAnd4Ws();
@@ -143,7 +143,7 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithBestBowlingAverageAndStrikeRate(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithBestBowlingAverageAndStrikeRate() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithBestBowlingAverageAndStrikeRate();
@@ -153,11 +153,22 @@ public class IPLAnalyserTest {
     }
 
     @Test
-    public void givenIPLBowlingFile_shouldGiveBowlerWithMaximumWicketsAndBestBowlingAverage(){
+    public void givenIPLBowlingFile_shouldGiveBowlerWithMaximumWicketsAndBestBowlingAverage() {
         try {
             iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
             Bowler bowler = iplAnalyser.getBowlerWithMaximumWicketsAndBestBowlingAverage();
             Assert.assertEquals("Imran Tahir", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
+
+    @Test
+    public void givenIPLBattingAndBowlingFile_shouldGiveAllRounderWithBestBattingAndBowlingAverage() {
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            AllRounder allRounder = iplAnalyser.getAllRounderWithBestBattingAndBowlingAverage();
+            Assert.assertEquals("Harpreet Brar",allRounder.getName());
         } catch (IPLAnalyserException e) {
         }
     }
