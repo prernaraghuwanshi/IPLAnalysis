@@ -151,4 +151,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBowlingFile_shouldGiveBowlerWithMaximumWicketsAndBestBowlingAverage(){
+        try {
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            Bowler bowler = iplAnalyser.getBowlerWithMaximumWicketsAndBestBowlingAverage();
+            Assert.assertEquals("Imran Tahir", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
