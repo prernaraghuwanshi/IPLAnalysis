@@ -165,10 +165,18 @@ public class IPLAnalyser {
 
     //Returns all-rounder with best batting and bowling average
     public AllRounder getAllRounderWithBestBattingAndBowlingAverage() throws IPLAnalyserException {
-        List<AllRounder> allRounderList =populateAllRounderList();
+        List<AllRounder> allRounderList = populateAllRounderList();
         Comparator<AllRounder> allRounderComparator = Comparator.comparing(allRounder -> (allRounder.getBattingAverage() / allRounder.getBowlingAverage()), Comparator.reverseOrder());
         List<AllRounder> allRounderBestBattingAndBowlingAverage = allRounderList.stream().sorted(allRounderComparator).collect(Collectors.toList());
         return allRounderBestBattingAndBowlingAverage.get(0);
+    }
+
+    //Returns all-rounder with most runs and wickets
+    public AllRounder getAllRounderWithMostRunsAndWickets() {
+        List<AllRounder> allRounderList = populateAllRounderList();
+        Comparator<AllRounder> allRounderComparator = Comparator.comparing(allRounder -> (allRounder.getRuns() * allRounder.getWickets()), Comparator.reverseOrder());
+        List<AllRounder> allRounderMostRunsAndWickets = allRounderList.stream().sorted(allRounderComparator).collect(Collectors.toList());
+        return allRounderMostRunsAndWickets.get(0);
     }
 
     //Fill allrounders list
@@ -176,8 +184,8 @@ public class IPLAnalyser {
         List<AllRounder> allRounderList = new ArrayList<>();
         batsmanList.stream().forEach(batsman -> {
             bowlerList.stream().forEach(bowler -> {
-                if(batsman.player.equals(bowler.player))
-                    allRounderList.add(new AllRounder(batsman.player,batsman.averageScore,bowler.average,bowler.wickets,batsman.runs));
+                if (batsman.player.equals(bowler.player))
+                    allRounderList.add(new AllRounder(batsman.player, batsman.averageScore, bowler.average, bowler.wickets, batsman.runs));
             });
         });
         return allRounderList;
