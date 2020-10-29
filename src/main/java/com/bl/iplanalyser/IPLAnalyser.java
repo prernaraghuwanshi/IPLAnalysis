@@ -154,6 +154,14 @@ public class IPLAnalyser {
         return bowlerBestAverageAndStrikeRate.get(0);
     }
 
+    //Returns bowler with maximum wickets and best bowling average
+    public Bowler getBowlerWithMaximumWicketsAndBestBowlingAverage() throws IPLAnalyserException {
+        checkEmptyList(bowlerList);
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getWickets).reversed().thenComparing(Bowler::getAverage);
+        List<Bowler> bowlerMaxWicketsAndBestAverage= bowlerList.stream().filter(bowler -> bowler.getAverage() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        return bowlerMaxWicketsAndBestAverage.get(0);
+    }
+
     // Check if file is CSV or not
     private void checkFileType(String csvFilePath) throws IPLAnalyserException {
         Pattern patternForCSV = Pattern.compile(".+[.csv]");
