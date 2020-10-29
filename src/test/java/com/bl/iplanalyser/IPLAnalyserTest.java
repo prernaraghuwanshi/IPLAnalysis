@@ -111,4 +111,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBowlingFile_shouldGiveBowlerWithTopBowlingStrikeRate(){
+        try {
+            iplAnalyser.loadBowlingFile(BOWLING_FILE_PATH);
+            Bowler bowler = iplAnalyser.getBowlerWithTopBowlingStrikeRate();
+            Assert.assertEquals("Alzarri Joseph", bowler.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
