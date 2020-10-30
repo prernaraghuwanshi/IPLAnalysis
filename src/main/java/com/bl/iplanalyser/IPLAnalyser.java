@@ -188,6 +188,15 @@ public class IPLAnalyser {
         return batsmanMaximumHundredsAndBestAverage.get(0);
     }
 
+    // Returns Batsman with no hundreds and fifties but best average
+    public Batsman getBatsmanWithNoHundredsAndFiftiesButBestAverage() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getAverageScore, Comparator.reverseOrder());
+        List<Batsman> batsmanNoHundredsFiftiesButBestAverage = batsmanList.stream().filter(batsman -> batsman.hundreds==0 && batsman.fifties==0)
+                .sorted(batsmanComparator).collect(Collectors.toList());
+        return batsmanNoHundredsFiftiesButBestAverage.get(0);
+    }
+
     //Fill allrounders list
     private List<AllRounder> populateAllRounderList() {
         List<AllRounder> allRounderList = new ArrayList<>();
