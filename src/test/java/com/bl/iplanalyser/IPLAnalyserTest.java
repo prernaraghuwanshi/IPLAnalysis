@@ -193,4 +193,14 @@ public class IPLAnalyserTest {
         } catch (IPLAnalyserException e) {
         }
     }
+
+    @Test
+    public void givenIPLBattingFile_shouldGiveBatsmanWithNoHundredsAndFiftiesButBestAverage() {
+        try {
+            iplAnalyser.loadBattingFile(BATTING_FILE_PATH);
+            Batsman batsman = iplAnalyser.getBatsmanWithNoHundredsAndFiftiesButBestAverage();
+            Assert.assertEquals("Marcus Stoinis", batsman.getPlayer());
+        } catch (IPLAnalyserException e) {
+        }
+    }
 }
