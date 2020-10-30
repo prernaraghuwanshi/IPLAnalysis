@@ -179,6 +179,15 @@ public class IPLAnalyser {
         return allRounderMostRunsAndWickets.get(0);
     }
 
+    // Returns Batsman with maximum hundreds and best average
+    public Batsman getBatsmanWithMaximumHundredsAndBestAverage() throws IPLAnalyserException {
+        checkEmptyList(batsmanList);
+        Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getHundreds, Comparator.reverseOrder())
+                .thenComparing(Batsman::getAverageScore, Comparator.reverseOrder());
+        List<Batsman> batsmanMaximumHundredsAndBestAverage = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        return batsmanMaximumHundredsAndBestAverage.get(0);
+    }
+
     //Fill allrounders list
     private List<AllRounder> populateAllRounderList() {
         List<AllRounder> allRounderList = new ArrayList<>();
