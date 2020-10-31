@@ -192,7 +192,7 @@ public class IPLAnalyser {
     public Batsman getBatsmanWithNoHundredsAndFiftiesButBestAverage() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getAverageScore, Comparator.reverseOrder());
-        List<Batsman> batsmanNoHundredsFiftiesButBestAverage = batsmanList.stream().filter(batsman -> batsman.hundreds==0 && batsman.fifties==0)
+        List<Batsman> batsmanNoHundredsFiftiesButBestAverage = batsmanList.stream().filter(batsman -> batsman.getHundreds()==0 && batsman.getFifties()==0)
                 .sorted(batsmanComparator).collect(Collectors.toList());
         return batsmanNoHundredsFiftiesButBestAverage.get(0);
     }
@@ -202,8 +202,8 @@ public class IPLAnalyser {
         List<AllRounder> allRounderList = new ArrayList<>();
         batsmanList.stream().forEach(batsman -> {
             bowlerList.stream().forEach(bowler -> {
-                if (batsman.player.equals(bowler.player))
-                    allRounderList.add(new AllRounder(batsman.player, batsman.averageScore, bowler.average, bowler.wickets, batsman.runs));
+                if (batsman.getPlayer().equals(bowler.getPlayer()))
+                    allRounderList.add(new AllRounder(batsman.getPlayer(), batsman.getAverageScore(), bowler.getAverage(), bowler.getWickets(), batsman.getRuns()));
             });
         });
         return allRounderList;

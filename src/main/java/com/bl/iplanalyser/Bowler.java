@@ -4,43 +4,43 @@ import com.opencsv.bean.CsvBindByName;
 
 public class Bowler {
     @CsvBindByName(column = "POS")
-    public int position;
+    private int position;
 
     @CsvBindByName(column = "PLAYER")
-    public String player;
+    private String player;
 
     @CsvBindByName(column = "Mat")
-    public int matches;
+    private int matches;
 
     @CsvBindByName(column = "Inns")
-    public int innings;
+    private int innings;
 
     @CsvBindByName(column = "Ov")
-    public double overs;
+    private double overs;
 
     @CsvBindByName(column = "Runs")
-    public int runs;
+    private int runs;
 
     @CsvBindByName(column = "Wkts")
-    public int wickets;
+    private int wickets;
 
     @CsvBindByName(column = "BBI")
-    public int bbi;
+    private int bbi;
 
     @CsvBindByName(column = "Avg")
-    public double average;
+    private double average;
 
     @CsvBindByName(column = "Econ")
-    public double economy;
+    private double economy;
 
     @CsvBindByName(column = "SR")
-    public double strikeRate;
+    private double strikeRate;
 
     @CsvBindByName(column = "4w")
-    public int fourWicket;
+    private int fourWicket;
 
     @CsvBindByName(column = "5w")
-    public int fiveWicket;
+    private int fiveWicket;
 
     public int getPosition() {
         return position;
