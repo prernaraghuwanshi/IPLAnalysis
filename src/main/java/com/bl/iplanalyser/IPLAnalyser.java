@@ -60,28 +60,36 @@ public class IPLAnalyser {
     // Returns Batsman with highest batting average
     public Batsman getBatsmanWithHighestAverage() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
-        List<Batsman> batsmanAverageList = batsmanList.stream().sorted(Comparator.comparing(Batsman::getAverageScore).reversed()).collect(Collectors.toList());
+        List<Batsman> batsmanAverageList = batsmanList.stream()
+                .sorted(Comparator.comparing(Batsman::getAverageScore).reversed())
+                .collect(Collectors.toList());
         return batsmanAverageList.get(0);
     }
 
     // Returns Batsman with highest striking rate
     public Batsman getBatsmanWithHighestStrikingRate() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
-        List<Batsman> batsmanStrikingRateList = batsmanList.stream().sorted(Comparator.comparing(Batsman::getStrikeRate).reversed()).collect(Collectors.toList());
+        List<Batsman> batsmanStrikingRateList = batsmanList.stream()
+                .sorted(Comparator.comparing(Batsman::getStrikeRate).reversed())
+                .collect(Collectors.toList());
         return batsmanStrikingRateList.get(0);
     }
 
     // Returns Batsman with maximum number of sixes
     public Batsman getBatsmanWithMaximumSixes() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
-        List<Batsman> batsmanMaximumSixes = batsmanList.stream().sorted(Comparator.comparing(Batsman::getSixes).reversed()).collect(Collectors.toList());
+        List<Batsman> batsmanMaximumSixes = batsmanList.stream()
+                .sorted(Comparator.comparing(Batsman::getSixes).reversed())
+                .collect(Collectors.toList());
         return batsmanMaximumSixes.get(0);
     }
 
     // Returns Batsman with maximum number of fours
     public Batsman getBatsmanWithMaximumFours() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
-        List<Batsman> batsmanMaximumSixes = batsmanList.stream().sorted(Comparator.comparing(Batsman::getFours).reversed()).collect(Collectors.toList());
+        List<Batsman> batsmanMaximumSixes = batsmanList.stream()
+                .sorted(Comparator.comparing(Batsman::getFours).reversed())
+                .collect(Collectors.toList());
         return batsmanMaximumSixes.get(0);
     }
 
@@ -91,7 +99,9 @@ public class IPLAnalyser {
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getSixes, Comparator.reverseOrder())
                 .thenComparing(Batsman::getFours, Comparator.reverseOrder())
                 .thenComparing(Batsman::getStrikeRate, Comparator.reverseOrder());
-        List<Batsman> batsmanMaximumSixesFoursStrikeRate = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        List<Batsman> batsmanMaximumSixesFoursStrikeRate = batsmanList.stream()
+                .sorted(batsmanComparator)
+                .collect(Collectors.toList());
         return batsmanMaximumSixesFoursStrikeRate.get(0);
     }
 
@@ -100,7 +110,9 @@ public class IPLAnalyser {
         checkEmptyList(batsmanList);
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getAverageScore, Comparator.reverseOrder())
                 .thenComparing(Batsman::getStrikeRate, Comparator.reverseOrder());
-        List<Batsman> batsmanBestAverageAndStrikeRate = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        List<Batsman> batsmanBestAverageAndStrikeRate = batsmanList.stream()
+                .sorted(batsmanComparator)
+                .collect(Collectors.toList());
         return batsmanBestAverageAndStrikeRate.get(0);
     }
 
@@ -109,7 +121,9 @@ public class IPLAnalyser {
         checkEmptyList(batsmanList);
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getRuns, Comparator.reverseOrder())
                 .thenComparing(Batsman::getAverageScore, Comparator.reverseOrder());
-        List<Batsman> batsmanMaximumRunsAndBestAverage = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        List<Batsman> batsmanMaximumRunsAndBestAverage = batsmanList.stream()
+                .sorted(batsmanComparator)
+                .collect(Collectors.toList());
         return batsmanMaximumRunsAndBestAverage.get(0);
     }
 
@@ -117,7 +131,10 @@ public class IPLAnalyser {
     public Bowler getBowlerWithMinimumBowlingAverage() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage);
-        List<Bowler> bowlerBestAverage = bowlerList.stream().filter(bowler -> bowler.getAverage() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        List<Bowler> bowlerBestAverage = bowlerList.stream()
+                .filter(bowler -> bowler.getAverage() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerBestAverage.get(0);
     }
 
@@ -125,7 +142,10 @@ public class IPLAnalyser {
     public Bowler getBowlerWithTopBowlingStrikeRate() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getStrikeRate);
-        List<Bowler> bowlerBestStrikeRate = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        List<Bowler> bowlerBestStrikeRate = bowlerList.stream()
+                .filter(bowler -> bowler.getStrikeRate() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerBestStrikeRate.get(0);
     }
 
@@ -133,7 +153,10 @@ public class IPLAnalyser {
     public Bowler getBowlerWithBestEconomy() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
         Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getEconomy);
-        List<Bowler> bowlerBestEconomy = bowlerList.stream().filter(bowler -> bowler.getEconomy() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        List<Bowler> bowlerBestEconomy = bowlerList.stream()
+                .filter(bowler -> bowler.getEconomy() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerBestEconomy.get(0);
     }
 
@@ -143,23 +166,34 @@ public class IPLAnalyser {
         Comparator<Bowler> bowlerComparator = Comparator.comparing(s -> s.getFourWicket() + s.getFiveWicket());
         bowlerComparator = bowlerComparator.reversed();
         bowlerComparator = bowlerComparator.thenComparing(Bowler::getStrikeRate);
-        List<Bowler> bowlerBestStrikeRate5W4W = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        List<Bowler> bowlerBestStrikeRate5W4W = bowlerList.stream()
+                .filter(bowler -> bowler.getStrikeRate() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerBestStrikeRate5W4W.get(0);
     }
 
     //Returns bowler with best bowling average and strike rate
     public Bowler getBowlerWithBestBowlingAverageAndStrikeRate() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
-        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage).thenComparing(Bowler::getStrikeRate);
-        List<Bowler> bowlerBestAverageAndStrikeRate = bowlerList.stream().filter(bowler -> bowler.getStrikeRate() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getAverage)
+                .thenComparing(Bowler::getStrikeRate);
+        List<Bowler> bowlerBestAverageAndStrikeRate = bowlerList.stream()
+                .filter(bowler -> bowler.getStrikeRate() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerBestAverageAndStrikeRate.get(0);
     }
 
     //Returns bowler with maximum wickets and best bowling average
     public Bowler getBowlerWithMaximumWicketsAndBestBowlingAverage() throws IPLAnalyserException {
         checkEmptyList(bowlerList);
-        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getWickets).reversed().thenComparing(Bowler::getAverage);
-        List<Bowler> bowlerMaxWicketsAndBestAverage = bowlerList.stream().filter(bowler -> bowler.getAverage() > 0).sorted(bowlerComparator).collect(Collectors.toList());
+        Comparator<Bowler> bowlerComparator = Comparator.comparing(Bowler::getWickets).reversed()
+                .thenComparing(Bowler::getAverage);
+        List<Bowler> bowlerMaxWicketsAndBestAverage = bowlerList.stream()
+                .filter(bowler -> bowler.getAverage() > 0)
+                .sorted(bowlerComparator)
+                .collect(Collectors.toList());
         return bowlerMaxWicketsAndBestAverage.get(0);
     }
 
@@ -167,7 +201,9 @@ public class IPLAnalyser {
     public AllRounder getAllRounderWithBestBattingAndBowlingAverage() throws IPLAnalyserException {
         List<AllRounder> allRounderList = populateAllRounderList();
         Comparator<AllRounder> allRounderComparator = Comparator.comparing(allRounder -> (allRounder.getBattingAverage() / allRounder.getBowlingAverage()), Comparator.reverseOrder());
-        List<AllRounder> allRounderBestBattingAndBowlingAverage = allRounderList.stream().sorted(allRounderComparator).collect(Collectors.toList());
+        List<AllRounder> allRounderBestBattingAndBowlingAverage = allRounderList.stream()
+                .sorted(allRounderComparator)
+                .collect(Collectors.toList());
         return allRounderBestBattingAndBowlingAverage.get(0);
     }
 
@@ -175,7 +211,9 @@ public class IPLAnalyser {
     public AllRounder getAllRounderWithMostRunsAndWickets() {
         List<AllRounder> allRounderList = populateAllRounderList();
         Comparator<AllRounder> allRounderComparator = Comparator.comparing(allRounder -> (allRounder.getRuns() * allRounder.getWickets()), Comparator.reverseOrder());
-        List<AllRounder> allRounderMostRunsAndWickets = allRounderList.stream().sorted(allRounderComparator).collect(Collectors.toList());
+        List<AllRounder> allRounderMostRunsAndWickets = allRounderList.stream()
+                .sorted(allRounderComparator)
+                .collect(Collectors.toList());
         return allRounderMostRunsAndWickets.get(0);
     }
 
@@ -184,7 +222,9 @@ public class IPLAnalyser {
         checkEmptyList(batsmanList);
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getHundreds, Comparator.reverseOrder())
                 .thenComparing(Batsman::getAverageScore, Comparator.reverseOrder());
-        List<Batsman> batsmanMaximumHundredsAndBestAverage = batsmanList.stream().sorted(batsmanComparator).collect(Collectors.toList());
+        List<Batsman> batsmanMaximumHundredsAndBestAverage = batsmanList.stream()
+                .sorted(batsmanComparator)
+                .collect(Collectors.toList());
         return batsmanMaximumHundredsAndBestAverage.get(0);
     }
 
@@ -192,8 +232,10 @@ public class IPLAnalyser {
     public Batsman getBatsmanWithNoHundredsAndFiftiesButBestAverage() throws IPLAnalyserException {
         checkEmptyList(batsmanList);
         Comparator<Batsman> batsmanComparator = Comparator.comparing(Batsman::getAverageScore, Comparator.reverseOrder());
-        List<Batsman> batsmanNoHundredsFiftiesButBestAverage = batsmanList.stream().filter(batsman -> batsman.getHundreds()==0 && batsman.getFifties()==0)
-                .sorted(batsmanComparator).collect(Collectors.toList());
+        List<Batsman> batsmanNoHundredsFiftiesButBestAverage = batsmanList.stream()
+                .filter(batsman -> batsman.getHundreds() == 0 && batsman.getFifties() == 0)
+                .sorted(batsmanComparator)
+                .collect(Collectors.toList());
         return batsmanNoHundredsFiftiesButBestAverage.get(0);
     }
 
