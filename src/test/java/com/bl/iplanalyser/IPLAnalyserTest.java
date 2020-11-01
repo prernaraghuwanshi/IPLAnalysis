@@ -154,7 +154,7 @@ public class IPLAnalyserTest {
     @Test
     public void givenIPLBattingAndBowlingFile_shouldGiveAllRounderWithBestBattingAndBowlingAverage() {
         AllRounder allRounder = iplAnalyser.getAllRounderWithBestBattingAndBowlingAverage();
-        Assert.assertEquals("Harpreet Brar", allRounder.getName());
+        Assert.assertEquals("Andre Russell", allRounder.getName());
     }
 
     @Test
